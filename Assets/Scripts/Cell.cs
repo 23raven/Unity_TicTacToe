@@ -11,6 +11,10 @@ public class Cell : MonoBehaviour
     private Image image;
     private Button button;
 
+    public GameManager gameManager;
+
+    private bool isUsed = false;
+
     private void Awake()
     {
         image = GetComponent<Image>();
@@ -21,11 +25,24 @@ public class Cell : MonoBehaviour
 
     void OnClick()
     {
-        SetX();
+        if (isUsed) return;
+
+        gameManager.MakeMove(this);
+        isUsed = true;
     }
 
-    void SetX()
+    public void SetO()
+    {
+        image.sprite = oSprite;
+    }
+
+    public void SetX()
     {
         image.sprite = xSprite;
+    }
+
+    public bool IsSame(Cell other)
+    {
+        return image.sprite != null && image.sprite == other.image.sprite;
     }
 }
