@@ -25,7 +25,7 @@ public class Cell : MonoBehaviour
 
     void OnClick()
     {
-        if (isUsed) return;
+        if (isUsed || gameManager.IsGameOver()) return;
 
         gameManager.MakeMove(this);
         isUsed = true;
@@ -44,5 +44,11 @@ public class Cell : MonoBehaviour
     public bool IsSame(Cell other)
     {
         return image.sprite != null && image.sprite == other.image.sprite;
+    }
+
+    public void ResetCell()
+    {
+        image.sprite = null;
+        isUsed = false;
     }
 }
