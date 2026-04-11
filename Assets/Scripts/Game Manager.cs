@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         restartButton.SetActive(false);
         resultText.gameObject.SetActive(false);
+        turnText.text = "X";
     }
 
     void UpdateTurnText()
@@ -108,6 +109,7 @@ public class GameManager : MonoBehaviour
         isXTurn = true;
         moveCount = 0;
         restartButton.SetActive(false);
+        turnText.text = "X";
 
         foreach (Cell cell in cells)
         {
