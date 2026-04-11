@@ -49,6 +49,19 @@ public class Cell : MonoBehaviour
     public void ResetCell()
     {
         image.sprite = null;
+        image.color = Color.white;
         isUsed = false;
+    }
+
+    public void Fade()
+    {
+        Color color = image.color;
+        color.a = 0.5f; // прозрачность
+        image.color = color;
+    }
+
+    public void Highlight()
+    {
+        image.color = Color.green;
     }
 }

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         restartButton.SetActive(false);
+        resultText.gameObject.SetActive(false);
     }
 
     void UpdateTurnText()
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
 
             string winner = isXTurn ? "X" : "O";
             Debug.Log("Winner: " + winner);
+            resultText.gameObject.SetActive(true);
             resultText.text = "Winner: " + winner;
             restartButton.SetActive(true);
             return;
@@ -76,11 +78,23 @@ public class GameManager : MonoBehaviour
 
             if (a.IsSame(b) && b.IsSame(c))
             {
+                HighlightWin(a, b, c);
                 return true;
             }
         }
 
         return false;
+    }
+
+    void HighlightWin(Cell a, Cell b, Cell c)
+    {
+        foreach (Cell cell in cells)
+        {
+            if (cell != a && cell != b && cell != c)
+            {
+                cell.Fade();
+            }
+        }
     }
 
     public bool IsGameOver()
@@ -99,5 +113,6 @@ public class GameManager : MonoBehaviour
         {
             cell.ResetCell();
         }
+
     }
 }
