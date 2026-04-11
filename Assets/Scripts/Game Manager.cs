@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,6 +8,9 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
     private int moveCount = 0;
     public GameObject restartButton;
+
+    public TMP_Text turnText;
+    public TMP_Text resultText;
 
     int[,] winPatterns = new int[,]
 {
@@ -18,6 +22,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         restartButton.SetActive(false);
+    }
+
+    void UpdateTurnText()
+    {
+        string player = isXTurn ? "X" : "O";
+        turnText.text = player;
     }
 
     public void MakeMove(Cell cell)
@@ -37,6 +47,7 @@ public class GameManager : MonoBehaviour
 
             string winner = isXTurn ? "X" : "O";
             Debug.Log("Winner: " + winner);
+            resultText.text = "Winner: " + winner;
             restartButton.SetActive(true);
             return;
         }
@@ -45,11 +56,14 @@ public class GameManager : MonoBehaviour
         {
             isGameOver = true;
             Debug.Log("DRAW");
+            resultText.text = "Draw!";
             restartButton.SetActive(true);
             return;
         }
 
         isXTurn = !isXTurn;
+        UpdateTurnText();
+
     }
 
     bool CheckWin()

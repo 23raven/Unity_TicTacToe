@@ -159,6 +159,7 @@ MonoBehaviour:
   - {fileID: 1150661639}
   - {fileID: 2065862737}
   - {fileID: 664135523}
+  restartButton: {fileID: 1588921610}
 --- !u!4 &286843094
 Transform:
   m_ObjectHideFlags: 0
